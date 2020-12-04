@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 
+import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
@@ -16,8 +17,9 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+import { UploadComponent } from './upload/upload.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,17 +32,20 @@ import { environment } from 'src/environments/environment';
     CreateArticleComponent,
     EditArticleComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
+    FormsModule
   ],
   providers: [
-    AngularFirestore
+    { provide: BUCKET, useValue: 'yours' }
   ],
   bootstrap: [AppComponent]
 })

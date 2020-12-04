@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
   
-  constructor(private http: HttpClient) { }
+  constructor(private db: AngularFireDatabase) { }
 
   getUsers() {
-    this.http.get('http://localhost:3000/api/posts').subscribe(user => console.log(user));
+    return this.db.list('/users');
   }
 }
