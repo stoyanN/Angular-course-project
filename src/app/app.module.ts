@@ -20,6 +20,9 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
 import { UploadComponent } from './upload/upload.component';
 import { FormsModule } from '@angular/forms';
+import { TestComponentComponent } from './test-component/test-component.component';
+import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
+import { Cloudinary } from 'cloudinary-core';
 
 @NgModule({
   declarations: [
@@ -33,19 +36,21 @@ import { FormsModule } from '@angular/forms';
     EditArticleComponent,
     LoginComponent,
     RegisterComponent,
-    UploadComponent
+    UploadComponent,
+    TestComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
     AngularFireStorageModule,
-    FormsModule
+    AngularFireDatabaseModule,
+    FormsModule,
+    CloudinaryModule.forRoot({ Cloudinary }, { cloud_name: 'dronicn8f' } as CloudinaryConfiguration)
   ],
   providers: [
-    { provide: BUCKET, useValue: 'yours' }
+    // { provide: BUCKET, useValue: 'yours' }
   ],
   bootstrap: [AppComponent]
 })

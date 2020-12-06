@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { map, finalize } from "rxjs/operators";
+import * as cloudinary from 'cloudinary-core';
 
 @Component({
   selector: 'app-upload',
@@ -24,6 +25,7 @@ export class UploadComponent implements OnInit {
 
   uploadFile(event: any) {
     this.path = event.target.files[0];
+    // cloudinary.v2.uploader.unsigned_upload(file, upload_preset, options, callback);
   }
 
   submitForm(f: any) {
