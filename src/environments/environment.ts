@@ -4,14 +4,9 @@
 
 export const environment = {
   production: false,
-  firebase: {
-    apiKey: "AIzaSyBqjivWPU9jf2ce1Ju1ughdbLxCG3T8AYs",
-    authDomain: "angular-2-f57ba.firebaseapp.com",
-    projectId: "angular-2-f57ba",
-    storageBucket: "angular-2-f57ba.appspot.com",
-    messagingSenderId: "832283090582",
-    appId: "1:832283090582:web:2558c58cc5b66965526cb7",
-    measurementId: "G-XVYR7RZX3R"
+  backendless: {
+    APP_ID: '99D0443C-0C96-0827-FFA4-82CA89294E00',
+    API_KEY: 'A876CDFE-6301-49CF-A4F3-EBE66959D2C0'
   }
 };
 

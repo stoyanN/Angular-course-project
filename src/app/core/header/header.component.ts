@@ -1,6 +1,7 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { UserInterface } from './user-interface';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { from, Subject } from 'rxjs';
 
 
 @Component({
@@ -8,24 +9,37 @@ import { UserInterface } from './user-interface';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
+
 export class HeaderComponent implements OnInit {
   name: string = 'name';
-  isAuth: boolean = false;
-  user: any;
+  isUser!: Backendless.User;
 
-
-  constructor(private auth: AngularFireAuth) { }
+  constructor(private service: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    this.auth.authState
-      .subscribe(x => {
-        x ? (this.isAuth = true, this.user = x.toJSON(), console.log(x.toJSON())) : this.isAuth = false;
-      });
+    let test = from(this.service.getUser()).subscribe(x => {
+      this.isUser = x;
+      
+      console.log(x, "this is the observable");
+    });
   }
 
-  logoutUser(event: any) {
-    this.auth.signOut();
-    console.log('User was logged out!');
+  async user() {
+    try {
+      this.isUser = await this.service.getUser();
+    } catch {
+      console.log("Something went wrong with user!");
+    }
   }
 
+  logoutUser() {
+    Backendless.UserService.logout()
+      .then(x => {
+        console.log(x);
+        this.router.navigate(['login']);
+      })
+      .catch((err: Error) => console.log(err.message));
+
+
+  }
 }

@@ -1,12 +1,13 @@
+<app-header></app-header>
 <div class="login-container">
     <div class="site-login">
-        <form #f="ngForm" (ngSubmit)="loginUser(f)">
+        <form #f="ngForm" (ngSubmit)="login(f)">
             <fieldset>
                 <legend>Login</legend>
                 <p class="email">
                     <label for="email">Email:</label>
                     <br>
-                    <input ngModel required type="email" id="email" name="username" placeholder="Example: ryan@abc.bg">
+                    <input ngModel required type="email" id="email" name="email" placeholder="Example: ryan@abc.bg">
                 </p>
                 <p class="password">
                     <label for="u-password">Password:</label>
@@ -20,3 +21,5 @@
         </form>
     </div>
 </div>
+
+<button (click)="isValid()">Tell me is valid</button>

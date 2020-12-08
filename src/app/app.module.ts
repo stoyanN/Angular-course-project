@@ -15,14 +15,14 @@ import { EditArticleComponent } from './edit-article/edit-article.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { FormsModule } from '@angular/forms'
+import backendless from 'backendless';
 import { environment } from 'src/environments/environment';
 import { UploadComponent } from './upload/upload.component';
-import { FormsModule } from '@angular/forms';
-import { TestComponentComponent } from './test-component/test-component.component';
-import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
-import { Cloudinary } from 'cloudinary-core';
+
+backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_KEY);
+
+
 
 @NgModule({
   declarations: [
@@ -36,18 +36,13 @@ import { Cloudinary } from 'cloudinary-core';
     EditArticleComponent,
     LoginComponent,
     RegisterComponent,
-    UploadComponent,
-    TestComponentComponent
+    UploadComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireStorageModule,
-    AngularFireDatabaseModule,
-    FormsModule,
-    CloudinaryModule.forRoot({ Cloudinary }, { cloud_name: 'dronicn8f' } as CloudinaryConfiguration)
+    FormsModule
   ],
   providers: [
     // { provide: BUCKET, useValue: 'yours' }

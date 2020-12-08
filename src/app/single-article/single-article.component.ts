@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SingleArticleComponent implements OnInit {
   orientation: string = 'Vertical';
-  imageURL: string = 'https://smtg';
+  imageURL: string = '';
   title: string = 'i am a title';
   objectId: string = 'radnom id';
 

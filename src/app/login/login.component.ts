@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -11,15 +12,29 @@ import { throwError } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private auth: AngularFireAuth, private router: Router) { }
+  constructor(private service: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  loginUser(f: any) {
-    let { username, password } = f.value;
-    let testRoute = 'about';
-    this.auth.signInWithEmailAndPassword(username, password).then(a => this.router.navigate([testRoute])).catch(err => throwError(err));
+  login(f: NgForm) {
+    let { email, password } = f.value;
+
+    if (email && password) {
+      this.service.loginUser(email, password).then(() => this.router.navigate(['about']));
+      // this.router.navigate(['/about']);
+    }
+  }
+
+  async isValid() {
+    try {
+      let user = await this.service.getUser();
+
+      console.log(user);
+    } catch {
+      throwError('Couldn get user properly!');
+    }
+
   }
 
 }

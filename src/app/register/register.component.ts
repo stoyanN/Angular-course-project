@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import * as fb from 'firebase';
-import { throwError } from 'rxjs';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -11,21 +11,37 @@ import { throwError } from 'rxjs';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private auth: AngularFireAuth) { }
+
+  constructor(private router: Router, private service: UserService) { }
 
   ngOnInit(): void {
     this.auth.authState.subscribe(user => console.log(user?.toJSON(), 'console was called'));
 
   }
 
-  submitForm(f: any) {
-    let { username, password, repassword } = f.value;
+  register(f: NgForm) {
+    let { email, password, rePassword } = f.value;
 
-    if (password === repassword) {
-      this.auth.createUserWithEmailAndPassword(username, password).then(a => console.log(a)).catch(err => throwError(err));
+    if (email && (password === rePassword)) {
+        this.service.registerUser(email, password);
+        this.service.loginUser(email, password);
+        this.router.navigate(['/about']);
+      // let user = new Backendless.User();
+      // user.email = email;
+      // user.password = password;
+
+      // Backendless.UserService.register(user)
+      //   .then(x => {
+      //     console.log(x);
+      //     console.log("Successful registration!");
+      //     this.router.navigate(['/about'])
+      //   })
+      //   .catch((err: Error) => {
+      //     console.log(`Something went wrong: ${err.message}`);
+      //   });
     }
-    console.log(f);
-    console.log('the form was submitted!', username, password, repassword);
+
+
   }
 
 }

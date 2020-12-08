@@ -1,12 +1,13 @@
+<app-header></app-header>
 <div class="register-container">
     <div class="site-register">
-        <form #f="ngForm" (ngSubmit)="submitForm(f)">
+        <form #f="ngForm" (ngSubmit)="register(f)">
             <fieldset>
                 <legend>Register</legend>
                 <p class="email">
                     <label for="email">Email:</label>
                     <br>
-                    <input required ngModel type="email" id="email" name="username" placeholder="Example: ryan@abc.bg">
+                    <input required ngModel type="email" id="email" name="email" placeholder="Example: ryan@abc.bg">
                 </p>
                 <p class="password">
                     <label for="u-password">Password</label>
@@ -16,10 +17,10 @@
                 <p class="password">
                     <label for="rep-u-password">Repeat Password</label>
                     <br>
-                    <input required ngModel type="password" id="rep-u-password" name="repassword">
+                    <input required ngModel type="password" id="rep-u-password" name="rePassword">
                 </p>
                 <p class="submit field">
-                    <button class="btn-submit" [disabled]="f.invalid" >Log In</button>
+                    <button class="btn-submit">Register</button>
                 </p>
             </fieldset>
         </form>

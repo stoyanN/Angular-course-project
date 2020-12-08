@@ -3,12 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
+import { AuthGuard } from './guards/auth.guard';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { SingleArticleComponent } from './single-article/single-article.component';
 import { UploadComponent } from './upload/upload.component';
-import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
-import { TestComponentComponent } from './test-component/test-component.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
@@ -17,12 +17,11 @@ const routes: Routes = [
   { path: 'home', component: HomepageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'test', component: TestComponentComponent },
-
-  { path: 'about', component: AboutComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
-  { path: 'create', component: CreateArticleComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
-  { path: 'edit', component: EditArticleComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
-  { path: 'upload', component: UploadComponent }
+  { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
+  { path: 'create', component: CreateArticleComponent, canActivate: [AuthGuard] },
+  { path: 'edit-article', component: EditArticleComponent, canActivate: [AuthGuard] },
+  { path: 'articles', component: SingleArticleComponent, canActivate: [AuthGuard] },
+  { path: 'upload', component: UploadComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
