@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
-import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
@@ -44,9 +42,7 @@ backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_
     HttpClientModule,
     FormsModule
   ],
-  providers: [
-    // { provide: BUCKET, useValue: 'yours' }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

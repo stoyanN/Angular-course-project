@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -15,8 +14,6 @@ export class RegisterComponent implements OnInit {
   constructor(private router: Router, private service: UserService) { }
 
   ngOnInit(): void {
-    this.auth.authState.subscribe(user => console.log(user?.toJSON(), 'console was called'));
-
   }
 
   register(f: NgForm) {

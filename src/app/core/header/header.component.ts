@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { from, Subject } from 'rxjs';
 
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
