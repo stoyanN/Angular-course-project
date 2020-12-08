@@ -19,6 +19,8 @@
                     <li>
                         <a (click)="logoutUser()" id="logout">Logout</a>
                     </li>
+                </ul>
+                <ul *ngIf="!isAuth">
                     <!-- {{else}} -->
                 </ul>
                 <ul *ngIf="!isUser">

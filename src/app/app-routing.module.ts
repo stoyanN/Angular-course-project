@@ -10,6 +10,8 @@ import { RegisterComponent } from './register/register.component';
 import { SingleArticleComponent } from './single-article/single-article.component';
 import { UploadComponent } from './upload/upload.component';
 
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomepageComponent },
