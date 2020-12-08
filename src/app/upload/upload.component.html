@@ -1,0 +1,14 @@
+<app-header></app-header>
+<form #f="ngForm" (ngSubmit)="submitForm(f)">
+    <label for="firstName">First Name</label>
+    <input type="text" name="firstName" ngModel id="firstName">
+    <label for="lastName">Last Name</label>
+    <input type="text" name="lastName" ngModel id="lastName">
+    <button>Submit</button>
+</form>
+
+
+
+<!-- <ul *ngFor="let user of users">
+    <li>{{ user.firstName }}</li>
+</ul> -->

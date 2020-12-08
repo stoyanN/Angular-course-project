@@ -13,6 +13,14 @@ import { EditArticleComponent } from './edit-article/edit-article.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms'
+import backendless from 'backendless';
+import { environment } from 'src/environments/environment';
+import { UploadComponent } from './upload/upload.component';
+
+backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_KEY);
+
+
 
 @NgModule({
   declarations: [
@@ -25,12 +33,14 @@ import { HttpClientModule } from '@angular/common/http';
     CreateArticleComponent,
     EditArticleComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

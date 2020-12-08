@@ -1,23 +1,26 @@
+<app-header></app-header>
 <div class="create-article">
-    <form action="#/create" method="POST">
+    <form #f="ngForm" (ngSubmit)="createStory(f)">
         <fieldset>
             <legend>Share your story</legend>
             <p>
-                <input type="text" name="imageURL" placeholder="Image URL">
+                <label for="upld">Upload image</label>
+                <br>
+                <input required ngModel name="imageFile" (change)="registerPhoto($event)" id="upld" type="file">
             </p>
             <p>
                 <label for="pic-direction">Select picture orientation</label>
                 <br>
-                <select name="orientation" id="pic-direction">
+                <select required ngModel name="orientation" id="pic-direction">
                     <option>Landscape</option>
                     <option>Portrait</option>
                 </select>
             </p>
             <p>
-                <input type="text" name="title" placeholder="Your story title">
+                <input required ngModel type="text" name="title" placeholder="Your story title">
             </p>
             <p>
-                <textarea name="description" cols="30" rows="10" placeholder="Tell us your story"></textarea>
+                <textarea required ngModel name="description" cols="30" rows="10" placeholder="Tell us your story"></textarea>
             </p>
             <p>
                 <button type="submit" class="btn-submit">Share</button>
@@ -25,3 +28,5 @@
         </fieldset>
     </form>
 </div>
+
+<button (click)="findRecords()">Find Records</button>
