@@ -16,12 +16,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(f: NgForm) {
-    let { email, password } = f.value;
+  async login(f: NgForm) {
+    try {
+      let { email, password } = f.value;
 
-    if (email && password) {
-      this.service.loginUser(email, password).then(() => this.router.navigate(['about']));
-      // this.router.navigate(['/about']);
+      if (email && password) {
+        await this.service.loginUser(email, password);
+        this.router.navigate(['about']);
+      }
+    } catch {
+      console.log("Login failed!");
     }
   }
 

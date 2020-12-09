@@ -7,7 +7,6 @@ import { AboutComponent } from './about/about.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { HeaderComponent } from './core/header/header.component';
-import { SingleArticleComponent } from './single-article/single-article.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
 import { EditArticleComponent } from './edit-article/edit-article.component';
 import { LoginComponent } from './login/login.component';
@@ -17,6 +16,9 @@ import { FormsModule } from '@angular/forms'
 import backendless from 'backendless';
 import { environment } from 'src/environments/environment';
 import { UploadComponent } from './upload/upload.component';
+import { ArticleDetailsComponent } from './article-details/article-details.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ArticleComponent } from './article/article.component';
 
 backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_KEY);
 
@@ -29,12 +31,14 @@ backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_
     HomepageComponent,
     FooterComponent,
     HeaderComponent,
-    SingleArticleComponent,
     CreateArticleComponent,
     EditArticleComponent,
     LoginComponent,
     RegisterComponent,
-    UploadComponent
+    UploadComponent,
+    ArticleDetailsComponent,
+    ArticleComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

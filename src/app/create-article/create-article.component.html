@@ -3,6 +3,7 @@
     <form #f="ngForm" (ngSubmit)="createStory(f)">
         <fieldset>
             <legend>Share your story</legend>
+            <div *ngIf="isInvalid" class="error-message">Please fill all required data!</div>
             <p>
                 <label for="upld">Upload image</label>
                 <br>
@@ -28,5 +29,3 @@
         </fieldset>
     </form>
 </div>
-
-<button (click)="findRecords()">Find Records</button>

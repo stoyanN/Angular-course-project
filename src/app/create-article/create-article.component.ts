@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MediaService } from '../services/media.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -8,70 +10,43 @@ import { UserService } from '../services/user.service';
 })
 export class CreateArticleComponent implements OnInit {
   imgFile: string = '';
+  isInvalid: boolean = false;
+  record: any;
 
-  constructor(private service: UserService) { }
+  constructor(private service: UserService, private media: MediaService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   registerPhoto(event: any) {
     this.imgFile = event.target.files[0];
-    console.log(event.target.files[0], 'registerPhoto');
-
-
   }
+
+
 
   async createStory(f: any) {
-    try {
-      const userId = await (await this.service.getUser()).objectId;
-      const formData = new FormData();
-
-      formData.append("file", this.imgFile);
-      formData.append("upload_preset", "jvmpdbhl");
-      formData.append("folder", userId ? `${userId}` : 'random');
-
-      const uploadedData = await fetch('https://api.cloudinary.com/v1_1/dronicn8f/image/upload', {
-        method: "POST",
-        body: formData
-      }).then(response => response.json());
+    if (f.valid) {
+      try {
+        const imageData = await this.media.uploadImage(this.imgFile);
+        let { orientation, title, description } = f.value;
 
 
-      Backendless.Data.of("posts").save({ imageUrl: uploadedData.url })
-        .then(returnValue => console.log(returnValue))
-        .catch(function (error) {
+        this.media.saveRecord({
+          imageUrl: imageData.url,
+          orientation: orientation,
+          title: title,
+          description: description
         });
-    } catch {
-      console.log("Something went wrong with creating the story!");
+
+        this.isInvalid = false;
+        this.router.navigate(['articles']);
+      } catch {
+        alert("Something went wrong with creating the story!");
+        console.log("Something went wrong with creating the story!");
+      }
+    } else {
+      this.isInvalid = true;
     }
-
-
-
-
-    // fetch('https://api.cloudinary.com/v1_1/dronicn8f/image/upload', {
-    //   method: "POST",
-    //   body: formData
-    // })
-    //   .then((response) => {
-    //     console.log(response);
-    //     return response.text();
-    //   })
-    //   .then(data => {
-    //     console.log(data);
-    //   })
-    //   .catch((err: Error) => {
-    //     console.log(err);
-    //   });
-  }
-
-  findRecords() {
-    let whereClause = "ownerId = '817A69D3-1A4B-4B97-A1C7-379B59ECDAA1'";
-    const queryBuilder = Backendless.DataQueryBuilder.create().setWhereClause(whereClause);
-
-
-    Backendless.Data.of("posts").find(queryBuilder)
-      .then(records => console.log(records))
-      .catch(function (error) {
-      });
   }
 
 }

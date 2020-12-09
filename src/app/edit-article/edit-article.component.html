@@ -1,29 +1,36 @@
 <app-header></app-header>
-<div class="create-article">
-    <form action="#/edit/{{_id}}" method="POST">
+<div *ngIf="!recordTest" style="text-align: center;">
+    <h1>Loading...</h1>
+</div>
+<div *ngIf="recordTest" class="create-article">
+    <h1>{{recordTest.description}}</h1>
+    <form #f="ngForm" (ngSubmit)="editStory(f)">
         <fieldset>
             <legend>Share your story</legend>
-                <p>
-                <input type="text" name="imageURL" placeholder="Image URL" value="{{imageURL}}">
-                </p>
-                <p>
+            <div *ngIf="isInvalid" class="error-message">Please fill all required data!</div>
+            <p>
+                <label for="upld">Upload image</label>
+                <br>
+                <input required ngModel name="imageFile" (change)="registerPhoto($event)" id="upld" type="file">
+            </p>
+            <p>
                 <label for="pic-direction">Select picture orientation</label>
                 <br>
-                <select name="orientation" id="pic-direction">
-                    <option selected>{{orientation}}</option>
+                <select required ngModel name="orientation" id="pic-direction">
                     <option>Landscape</option>
                     <option>Portrait</option>
                 </select>
-                </p>
-                <p>
-                <input type="text" name="title" placeholder="Your story title" value="{{title}}">
-                </p>
-                <p>
-                <textarea name="description" cols="30" rows="10" placeholder="Tell us your story">{{description}}</textarea>
-                </p>
-                <p>
-                    <button type="submit" class="btn-submit">Edit</button>
-                </p>
+            </p>
+            <p>
+                <input required ngModel type="text" name="title" placeholder="Your story title">
+            </p>
+            <p>
+                <textarea required ngModel name="description" cols="30" rows="10"
+                    placeholder="Tell us your story">{{recordTest.description}}</textarea>
+            </p>
+            <p>
+                <button type="submit" class="btn-submit">Share</button>
+            </p>
         </fieldset>
     </form>
 </div>

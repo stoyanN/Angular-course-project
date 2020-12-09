@@ -12,9 +12,18 @@ export class UserService {
     return Backendless.UserService.getCurrentUser()
   }
 
+  logoutUser() {
+    localStorage.clear();
+    return Backendless.UserService.logout();
+  }
+
   loginUser(email: string, password: string) {
     return Backendless.UserService.login(email, password, true)
-      .then(x => console.log(x))
+      .then(x => {
+        localStorage.setItem('userId', `${x.objectId}`)
+        localStorage.setItem('email', `${x.email}`)
+        console.log(x)
+      })
       .catch((err: Error) => console.log(err.message));
   }
 

@@ -3,12 +3,12 @@
         <div class="header-logo">
             <a routerLink="/home">Ryan's life</a>
         </div>
-        <p *ngIf="isUser">Welcome, {{isUser.email}}!</p>
+        <p *ngIf="userName">Welcome, {{userName}}!</p>
         <div class="hamburger">
             <label for="ham-check" hidden><i class="fas fa-bars"></i></label>
             <input type="checkbox" id="ham-check" hidden>
             <div class="header-menu">
-                <ul *ngIf="isUser">
+                <ul *ngIf="userName">
                     <!-- {{#if isAuth}} -->
                     <li>
                         <a routerLink="/about">About me</a>
@@ -17,11 +17,11 @@
                         <a routerLink="/articles">Your Stories</a>
                     </li>
                     <li>
-                        <a (click)="logoutUser()" id="logout">Logout</a>
+                        <a (click)="logout()" id="logout">Logout</a>
                     </li>
                     <!-- {{else}} -->
                 </ul>
-                <ul *ngIf="!isUser">
+                <ul *ngIf="!userName">
                     <li>
                         <a routerLink="/login">Login</a>
                     </li>

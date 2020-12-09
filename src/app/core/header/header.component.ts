@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { from, Subject } from 'rxjs';
 
@@ -10,35 +10,21 @@ import { from, Subject } from 'rxjs';
 })
 
 export class HeaderComponent implements OnInit {
-  name: string = 'name';
-  isUser!: Backendless.User;
+  userName: any;
 
-  constructor(private service: UserService, private router: Router) { }
+  constructor(private service: UserService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    let test = from(this.service.getUser()).subscribe(x => {
-      this.isUser = x;
-      
-      console.log(x, "this is the observable");
-    });
+    this.userName = localStorage.getItem('email');
   }
 
-  async user() {
+
+  async logout() {
     try {
-      this.isUser = await this.service.getUser();
+      await this.service.logoutUser();
+      this.router.navigate(['login']);
     } catch {
-      console.log("Something went wrong with user!");
+      console.log("Logout error!");
     }
-  }
-
-  logoutUser() {
-    Backendless.UserService.logout()
-      .then(x => {
-        console.log(x);
-        this.router.navigate(['login']);
-      })
-      .catch((err: Error) => console.log(err.message));
-
-
   }
 }

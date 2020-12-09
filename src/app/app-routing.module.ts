@@ -7,19 +7,25 @@ import { AuthGuard } from './guards/auth.guard';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { SingleArticleComponent } from './single-article/single-article.component';
 import { UploadComponent } from './upload/upload.component';
+import { ArticleDetailsComponent } from './article-details/article-details.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ArticleComponent } from './article/article.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomepageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'not-found', component: NotFoundComponent },
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: 'create', component: CreateArticleComponent, canActivate: [AuthGuard] },
   { path: 'edit-article', component: EditArticleComponent, canActivate: [AuthGuard] },
-  { path: 'articles', component: SingleArticleComponent, canActivate: [AuthGuard] },
-  { path: 'upload', component: UploadComponent, canActivate: [AuthGuard] }
+  { path: 'articles', component: ArticleComponent, canActivate: [AuthGuard] },
+  { path: 'articles/:id', component: ArticleDetailsComponent, canActivateChild: [AuthGuard] },
+  { path: 'edit/:id', component: EditArticleComponent, canActivate: [AuthGuard] },
+  { path: 'upload', component: UploadComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: 'not-found' }
 ];
 
 @NgModule({

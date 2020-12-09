@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div *ngIf="!recData" class="article-container">
+    <h1>Loading...</h1>
+</div>
+<div *ngIf="recData" class="article-container">
+    <!-- <h1 class="my-4">Title : {{story.title}} </h1> -->
+
+    --------------------------------------------
+    <div class="article-media">
+        <img class="{{recData.orientation}}" src="{{recData.imageUrl}}" alt="">
+    </div>
+    <div class="buttons">
+        <div *ngIf="isAuthor" class="buttons">
+            <a class="like-btn" (click)="deleteRec(recId)">Delete</a>
+            <a class="like-btn" routerLink="/edit/{{recId}}">Edit</a>
+        </div>
+
+        <div *ngIf="!isAuthor">
+            <span>Likes: 11</span>
+            <a class="like-btn">Like</a>
+        </div>
+    </div>
+    <div class="article-info">
+        <h2>
+            {{recData.title}}
+        </h2>
+        <p>
+            {{recData.description}}
+        </p>
+    </div>
+    <div class="comments">
+        <form>
+            <label for="comment">Comment</label>
+            <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+            <a class="like-btn">Comment</a>
+        </form>
+        <div>Other Comments</div>
+    </div>
+    -----------------------------------
+
+</div>

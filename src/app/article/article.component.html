@@ -1,0 +1,12 @@
+<app-header></app-header>
+<div *ngIf="userRecords" class="site-articles">
+    <div *ngFor="let record of userRecords" class="single-article">
+        <div class="picture-{{record.orientation}}">
+            <img src="{{record.imageUrl}}" alt="{{record.title}}">
+        </div>
+        <h2>
+            {{record.title}}
+        </h2>
+        <a routerLink="{{record.objectId}}">View story</a>
+    </div>
+</div>
