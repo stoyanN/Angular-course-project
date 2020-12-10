@@ -29,14 +29,11 @@ export class MediaService {
   }
 
   deleteRecord(collection: string, recordId: number) {
-    Backendless.Data.of(collection).remove({ objectId: `${recordId}` })
-      .then(x => console.log(x))
-      .catch(function (error) {
-      });
+    return Backendless.Data.of(collection).remove({ objectId: `${recordId}` });
   }
 
   saveRecord(data: MediaRecord) {
-    Backendless.Data.of("posts").save(data);
+    return Backendless.Data.of("posts").save(data);
   }
 
   userRecords(userId: string, collection: string) {

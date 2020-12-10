@@ -1,3 +1,5 @@
+import { FormControl, FormGroup } from '@angular/forms';
+
 export interface SinglePost {
     created: number,
     description: string,
@@ -6,6 +8,6 @@ export interface SinglePost {
     orientation: string,
     ownerId: string,
     title: string,
-    updated: null,
+    updated: any,
     ___class: string
 }

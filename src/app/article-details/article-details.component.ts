@@ -28,9 +28,13 @@ export class ArticleDetailsComponent implements OnInit {
   }
 
 
-  deleteRec(value: any) {
-    this.media.deleteRecord('posts', value);
-    this.router.navigate(['articles']);
-    console.log(value);
+  async deleteRec(value: any) {
+    try {
+      await this.media.deleteRecord('posts', value);
+      this.router.navigate(['articles']);
+      console.log(value);
+    } catch {
+      console.log("Record deleting error!");
+    }
   }
 }

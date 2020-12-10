@@ -31,7 +31,7 @@ export class CreateArticleComponent implements OnInit {
         let { orientation, title, description } = f.value;
 
 
-        this.media.saveRecord({
+        await this.media.saveRecord({
           imageUrl: imageData.url,
           orientation: orientation,
           title: title,
