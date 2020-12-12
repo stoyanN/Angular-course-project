@@ -25,19 +25,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['about']);
       }
     } catch {
+      f.resetForm();
       console.log("Login failed!");
     }
-  }
-
-  async isValid() {
-    try {
-      let user = await this.service.getUser();
-
-      console.log(user);
-    } catch {
-      throwError('Couldn get user properly!');
-    }
-
   }
 
 }

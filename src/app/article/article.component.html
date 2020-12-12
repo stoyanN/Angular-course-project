@@ -1,4 +1,8 @@
 <app-header></app-header>
+
+<div class="loader site-articles" *ngIf="!isLoaded">
+    <h1>Loading...</h1>
+</div>
 <div *ngIf="userRecords" class="site-articles">
     <div *ngFor="let record of userRecords" class="single-article">
         <div class="picture-{{record.orientation}}">

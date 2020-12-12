@@ -35,7 +35,8 @@ export class CreateArticleComponent implements OnInit {
           imageUrl: imageData.url,
           orientation: orientation,
           title: title,
-          description: description
+          description: description,
+          likesList: JSON.stringify([]) // DO NOT FORGET TO FIX THIS ISSUE
         });
 
         this.isInvalid = false;

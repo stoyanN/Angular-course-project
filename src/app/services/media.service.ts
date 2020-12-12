@@ -32,7 +32,7 @@ export class MediaService {
     return Backendless.Data.of(collection).remove({ objectId: `${recordId}` });
   }
 
-  saveRecord(data: MediaRecord) {
+  saveRecord(data: any) {
     return Backendless.Data.of("posts").save(data);
   }
 

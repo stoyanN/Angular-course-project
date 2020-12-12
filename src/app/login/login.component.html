@@ -15,11 +15,9 @@
                     <input ngModel required type="password" name="password" id="u-password">
                 </p>
                 <p class="submit">
-                    <button class="btn-submit">Log In</button>
+                    <button [disabled]="f.invalid" class="btn-submit">Log In</button>
                 </p>
             </fieldset>
         </form>
     </div>
 </div>
-
-<button (click)="isValid()">Tell me is valid</button>

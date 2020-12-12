@@ -3,34 +3,32 @@
     <h1>Loading...</h1>
 </div>
 <div *ngIf="recordTest" class="create-article">
-    <form *ngIf="testFormGroup" [formGroup]="testFormGroup" (ngSubmit)="editStory()">
+    <form *ngIf="editFormGroup" [formGroup]="editFormGroup" (ngSubmit)="editStory()">
         <fieldset>
             <legend>Share your story</legend>
             <div *ngIf="isInvalid" class="error-message">Please fill all required data!</div>
-            <p>
+            <div>
                 <label for="upld">Upload image</label>
                 <br>
-                <input  name="imageFile" (change)="registerPhoto($event)" id="upld"
-                    type="file">
-            </p>
-            <p>
+                <input name="imageFile" (change)="registerPhoto($event)" id="upld" type="file">
+            </div>
+            <div>
                 <label for="pic-direction">Select picture orientation</label>
                 <br>
                 <select formControlName="orientation" id="pic-direction">
                     <option>Landscape</option>
                     <option>Portrait</option>
                 </select>
-            </p>
-            <p>
+            </div>
+            <div>
                 <input type="text" formControlName="title" placeholder="Your story title">
-            </p>
-            <p>
-                <textarea formControlName="description" cols="30" rows="10"
-                    placeholder="Tell us your story"></textarea>
-            </p>
-            <p>
+            </div>
+            <div>
+                <textarea formControlName="description" cols="30" rows="10" placeholder="Tell us your story"></textarea>
+            </div>
+            <div>
                 <button type="submit" class="btn-submit">Share</button>
-            </p>
+            </div>
         </fieldset>
     </form>
 </div>

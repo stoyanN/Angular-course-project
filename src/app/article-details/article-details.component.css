@@ -1,1 +1,20 @@
 @import url('../../assets/css/articles.css');
+h3 {
+    font-size: 2.5em;
+    text-shadow: 0 0 0.2em black;
+    font-family: 'Dancing Script', cursive;
+    color: gold;
+}
+
+
+.likes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.info-holder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

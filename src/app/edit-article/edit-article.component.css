@@ -13,7 +13,7 @@
     height: 20vh;
 }
 
-.create-article fieldset p:last-child {
+.create-article fieldset div:last-child {
     display: flex;
     justify-content: center;
 }

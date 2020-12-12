@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,10 @@ import { Router } from '@angular/router';
 export class UserService {
 
   constructor() { }
+
+  updateUserData(data: any) {
+    return Backendless.Data.of("Users").save(data);
+  }
 
   getUser() {
     return Backendless.UserService.getCurrentUser()
@@ -24,7 +29,10 @@ export class UserService {
         localStorage.setItem('email', `${x.email}`)
         console.log(x)
       })
-      .catch((err: Error) => console.log(err.message));
+      .catch((err: Error) => {
+        alert(err.message);
+        throw new Error(err.message);
+      });
   }
 
   registerUser(email: string, password: string) {
@@ -32,14 +40,7 @@ export class UserService {
     user.email = email;
     user.password = password;
 
-    Backendless.UserService.register(user)
-      .then(x => {
-        console.log(x);
-        console.log("Successful registration!");
-      })
-      .catch((err: Error) => {
-        console.log(`Something went wrong: ${err.message}`);
-      });
+    return Backendless.UserService.register(user);
   }
 
 

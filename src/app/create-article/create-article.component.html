@@ -24,7 +24,7 @@
                 <textarea required ngModel name="description" cols="30" rows="10" placeholder="Tell us your story"></textarea>
             </p>
             <p>
-                <button type="submit" class="btn-submit">Share</button>
+                <button type="submit" [disabled]="f.invalid" class="btn-submit">Share</button>
             </p>
         </fieldset>
     </form>

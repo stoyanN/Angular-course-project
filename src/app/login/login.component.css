@@ -1,14 +1,4 @@
-.login-container {
-    /* min-height: 79.5vh; */
-    width: 65%;
-    margin: 0 auto;
-    text-align: start;
-}
 
-.site-login {
-    align-items: center;
-    padding: 3em;
-}
 
 form {
     margin: 1em;
@@ -47,6 +37,21 @@ textarea {
     height: 1.5em;
     width: 20vw;
     box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.5);
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 83.9vh;
+    width: 65%;
+    margin: 0 auto;
+    text-align: start;
+}
+
+.site-login {
+    align-items: center;
+    padding: 3em;
 }
 
 .submit {

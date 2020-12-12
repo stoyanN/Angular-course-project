@@ -1,14 +1,4 @@
-.register-container {
-    /* min-height: 79.5vh; */
-    width: 65%;
-    margin: 0 auto;
-    text-align: start;
-}
 
-.site-login {
-    align-items: center;
-    padding: 3em;
-}
 
 form {
     margin: 1em;
@@ -36,7 +26,7 @@ fieldset legend {
     border-bottom: 2px solid white;
 }
 
-form p {
+form div {
     margin-bottom: 1.5em;
 }
 
@@ -47,6 +37,31 @@ textarea {
     height: 1.5em;
     width: 20vw;
     box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.5);
+}
+
+.error {
+    border: 2.5px solid red;
+    border-radius: 10px;
+    background-color: rgba(255,0,0,0.3);
+    width: 20vw;
+    margin: 0 auto;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 83.9vh;
+    width: 65%;
+    margin: 0 auto;
+    text-align: start;
+}
+
+.site-login {
+    align-items: center;
+    padding: 3em;
 }
 
 .submit {

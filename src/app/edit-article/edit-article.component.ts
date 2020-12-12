@@ -14,7 +14,7 @@ export class EditArticleComponent implements OnInit {
   isInvalid: boolean = false;
   recId: any;
   recordTest!: SinglePost;
-  testFormGroup!: FormGroup;
+  editFormGroup!: FormGroup;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private media: MediaService, private router: Router) {
   }
@@ -24,7 +24,7 @@ export class EditArticleComponent implements OnInit {
     try {
       this.recId = this.route.snapshot.params.id;
       this.recordTest = Object.assign(await this.media.getSingleRecord(`${this.recId}`, 'posts'));
-      this.testFormGroup = this.fb.group(this.recordTest);
+      this.editFormGroup = this.fb.group(this.recordTest);
 
     } catch {
       console.log("Problem getting record!");
@@ -47,7 +47,7 @@ export class EditArticleComponent implements OnInit {
 
   async editStory() {
     try {
-      let shallowCopy = Object.assign({}, this.testFormGroup.value);
+      let shallowCopy = Object.assign({}, this.editFormGroup.value);
 
 
       if (this.imgFile) {
@@ -58,7 +58,7 @@ export class EditArticleComponent implements OnInit {
 
       await this.media.saveRecord(shallowCopy);
 
-      this.router.navigate(['articles']);
+      this.router.navigate(['articles', this.recId]);
       // console.log(this.imgFile);
       // console.log(shallowCopy);
     } catch {

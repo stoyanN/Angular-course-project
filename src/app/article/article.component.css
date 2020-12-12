@@ -1,1 +1,6 @@
 @import url('../../assets/css/articles.css');
+
+
+.loader {
+    text-align: center;
+}
