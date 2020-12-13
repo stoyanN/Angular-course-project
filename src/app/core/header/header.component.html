@@ -3,7 +3,7 @@
         <div class="header-logo">
             <a routerLink="/home">Ryan's life</a>
         </div>
-        <p *ngIf="userName">Welcome, {{userName}}!</p>
+        <a *ngIf="userName" routerLink="/user-profile">Welcome {{userName}}!</a>
         <div class="hamburger">
             <label for="ham-check" hidden><i class="fas fa-bars"></i></label>
             <input type="checkbox" id="ham-check" hidden>

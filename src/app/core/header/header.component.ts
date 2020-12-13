@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   async logout() {
     try {
       await this.service.logoutUser();
-      this.router.navigate(['login']);
+      this.router.navigate(['home']);
     } catch {
       console.log("Logout error!");
     }

@@ -1,11 +1,16 @@
+#logout {
+    cursor: pointer;
+}
+
+.profile-link {
+    display: inline;
+}
+
 .site-header {
     margin-bottom: 1em;
     background-color: rgba(73, 73, 73, 0.5);
 }
 
-#logout {
-    cursor: pointer;
-}
 
 .header-nav p {
     color: gold;
