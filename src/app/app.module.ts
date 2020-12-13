@@ -15,7 +15,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import backendless from 'backendless';
 import { environment } from 'src/environments/environment';
-import { UploadComponent } from './upload/upload.component';
 import { ArticleDetailsComponent } from './article-details/article-details.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ArticleComponent } from './article/article.component';
@@ -35,7 +34,6 @@ backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_
     EditArticleComponent,
     LoginComponent,
     RegisterComponent,
-    UploadComponent,
     ArticleDetailsComponent,
     ArticleComponent,
     NotFoundComponent

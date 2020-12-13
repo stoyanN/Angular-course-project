@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MediaRecord } from '../models/media-record';
-import { SinglePost } from '../models/single-post';
 
 @Injectable({
   providedIn: 'root'

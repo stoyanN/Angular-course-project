@@ -47,8 +47,6 @@ export class RegisterComponent implements OnInit {
         await this.service.registerUser(email, password);
         await this.service.loginUser(email, password);
         await this.router.navigate(['/about']);
-      } else {
-        console.log("ha ha is invalid")
       }
     } catch {
       console.log('Registration error!');

@@ -66,7 +66,6 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
       if (isSure) {
         await this.media.deleteRecord('posts', value);
         this.router.navigate(['articles']);
-        console.log(value);
       }
 
     } catch {
@@ -106,7 +105,7 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
 
         await this.media.saveRecord(this.recData);
       } else {
-        console.log("this post is already dissliked")
+        console.log("this post is already disliked")
       }
 
     } catch {

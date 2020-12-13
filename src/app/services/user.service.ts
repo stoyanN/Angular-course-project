@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +25,6 @@ export class UserService {
       .then(x => {
         localStorage.setItem('userId', `${x.objectId}`)
         localStorage.setItem('email', `${x.email}`)
-        console.log(x)
       })
       .catch((err: Error) => {
         alert(err.message);

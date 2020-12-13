@@ -15,7 +15,7 @@
         <div class="likes" >
             <h3>Likes: {{likes.length}}</h3>
             <a class="like-btn" *ngIf="!isAuthor && !isLiked" (click)="likesUpdate()"><i class="fas fa-thumbs-up"></i> Like</a>
-            <a class="like-btn" *ngIf="!isAuthor && isLiked" (click)="disslikeUpdate()"><i class="fas fa-thumbs-down"></i> Disslike</a>
+            <a class="like-btn" *ngIf="!isAuthor && isLiked" (click)="disslikeUpdate()"><i class="fas fa-thumbs-down"></i> Dislike</a>
         </div>
     </div>
     <div class="article-info">

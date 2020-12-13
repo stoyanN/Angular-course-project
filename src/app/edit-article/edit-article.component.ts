@@ -59,8 +59,6 @@ export class EditArticleComponent implements OnInit {
       await this.media.saveRecord(shallowCopy);
 
       this.router.navigate(['articles', this.recId]);
-      // console.log(this.imgFile);
-      // console.log(shallowCopy);
     } catch {
       console.log("Record updating error!");
     }

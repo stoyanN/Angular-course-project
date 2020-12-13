@@ -7,7 +7,6 @@ import { AuthGuard } from './guards/auth.guard';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { UploadComponent } from './upload/upload.component';
 import { ArticleDetailsComponent } from './article-details/article-details.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ArticleComponent } from './article/article.component';
@@ -24,7 +23,6 @@ const routes: Routes = [
   { path: 'articles', component: ArticleComponent, canActivate: [AuthGuard] },
   { path: 'articles/:id', component: ArticleDetailsComponent, canActivateChild: [AuthGuard] },
   { path: 'edit/:id', component: EditArticleComponent, canActivate: [AuthGuard] },
-  { path: 'upload', component: UploadComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'not-found' }
 ];
 

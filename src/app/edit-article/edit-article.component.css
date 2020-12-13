@@ -1,5 +1,5 @@
 .create-article {
-    min-height: 79.5vh;
+    min-height: 83.9vh;
 }
 
 .create-article fieldset {
@@ -11,6 +11,10 @@
 
 .story-description {
     height: 20vh;
+}
+
+.create-article div+div {
+    margin: 1rem 0;
 }
 
 .create-article fieldset div:last-child {
