@@ -1,0 +1,13 @@
+img {
+    width: 50%;
+    height: auto;
+}
+
+.not-found {
+    display: flex;
+    justify-content: center;
+    width: 60vw;
+    height: 83.9vh;
+    margin: 0 auto;
+}
+
