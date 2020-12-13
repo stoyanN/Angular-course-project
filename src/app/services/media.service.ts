@@ -14,12 +14,13 @@ export class MediaService {
       formData.append("file", imgFile);
       formData.append("upload_preset", "jvmpdbhl");
 
-      const uploadedData = await fetch('https://api.cloudinary.com/v1_1/dronicn8f/image/upload', {
+      const { secure_url } = await fetch('https://api.cloudinary.com/v1_1/dronicn8f/image/upload', {
         method: "POST",
         body: formData
       }).then(response => response.json());
 
-      return uploadedData;
+
+      return secure_url;
     } catch {
       console.log("There was an error!");
     }

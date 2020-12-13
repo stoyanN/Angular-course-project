@@ -32,11 +32,11 @@ export class CreateArticleComponent implements OnInit {
 
 
         await this.media.saveRecord({
-          imageUrl: imageData.url,
+          imageUrl: imageData,
           orientation: orientation,
           title: title,
           description: description,
-          likesList: JSON.stringify([]) // DO NOT FORGET TO FIX THIS ISSUE
+          likesList: JSON.stringify([])
         });
 
         this.isInvalid = false;

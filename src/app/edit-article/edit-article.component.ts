@@ -53,7 +53,7 @@ export class EditArticleComponent implements OnInit {
       if (this.imgFile) {
         const imageData = await this.media.uploadImage(this.imgFile);
 
-        shallowCopy.imageUrl = imageData.url;
+        shallowCopy.imageUrl = imageData;
       }
 
       await this.media.saveRecord(shallowCopy);
