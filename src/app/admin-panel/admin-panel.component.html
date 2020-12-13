@@ -1,0 +1,30 @@
+<app-header></app-header>
+
+<div *ngIf="isLoaded" class="admin-panel">
+    <table *ngIf="articles">
+        <thead>
+            <tr>
+                <th>UserId</th>
+                <th>Article Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of articles">
+                <td>
+                    UserId: {{a.ownerId}}
+                </td>
+                <td>Article name: {{a.title}}</td>
+                <td>
+                    <a class="buttons" routerLink="/edit/{{a.objectId}}">Edit</a>
+                    <a class="buttons" (click)="delete(a.objectId)">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 *ngIf="!articles">There are no records</h2>
+</div>
+
+<div *ngIf="!isLoaded" class="admin-panel">
+    <h2>Loading...</h2>
+</div>

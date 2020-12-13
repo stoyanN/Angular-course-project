@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
+import { Admin } from '../models/admin';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  user!: Admin;
   constructor(private service: UserService, private router: Router) { }
 
   ngOnInit(): void {
@@ -21,8 +22,13 @@ export class LoginComponent implements OnInit {
       let { email, password } = f.value;
 
       if (email && password) {
-        await this.service.loginUser(email, password);
-        this.router.navigate(['about']);
+        this.user = Object.assign(await this.service.loginUser(email, password));
+
+        if (this.user.role === 'admin') {
+        this.router.navigate(['admin']);
+        } else {
+          this.router.navigate(['about']);
+        }
       }
     } catch {
       f.resetForm();

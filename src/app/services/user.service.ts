@@ -23,8 +23,9 @@ export class UserService {
   loginUser(email: string, password: string) {
     return Backendless.UserService.login(email, password, true)
       .then(x => {
-        localStorage.setItem('userId', `${x.objectId}`)
-        localStorage.setItem('email', `${x.email}`)
+        localStorage.setItem('userId', `${x.objectId}`);
+        localStorage.setItem('email', `${x.email}`);
+        return x;
       })
       .catch((err: Error) => {
         alert(err.message);

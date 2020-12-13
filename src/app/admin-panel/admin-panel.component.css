@@ -1,0 +1,65 @@
+.admin-panel {
+    min-height: 83.9vh;
+    /* background-color: lawngreen; */
+    padding: 5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* justify-content: space-evenly; */
+}
+
+.record-line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    background-color: hotpink;
+    width: 70%;
+    margin: 1rem 0;
+    height: 3rem;
+    border: 2px solid black;
+    border-radius: 1rem;
+    /* font-size: 1.2rem; */
+}
+
+table {
+    width: 80vw;
+    border: 2px solid green;
+    border-collapse: collapse;
+}
+
+tr th {
+    font-size: 1.3rem;
+    padding: 0.5rem;
+}
+
+td {
+    color: white;
+    font-size: 1.1rem;
+}
+
+td a {
+    /* color: indigo; */
+    cursor: pointer;
+}
+
+tbody tr {
+    background-color: rgba(73, 73,73,0.5);
+    text-align: center;
+    
+}
+
+tr {
+    border: 2px solid green;
+}
+
+
+.buttons {
+    padding: 0.3em 0.2em;
+    background-color: gold;
+    border-radius: 0.5em;
+    margin: 0.3em;
+    color: green;
+    cursor: pointer;
+}

@@ -10,6 +10,8 @@ import { RegisterComponent } from './register/register.component';
 import { ArticleDetailsComponent } from './article-details/article-details.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ArticleComponent } from './article/article.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -17,6 +19,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'not-found', component: NotFoundComponent },
+  { path: 'admin', component: AdminPanelComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: 'create', component: CreateArticleComponent, canActivate: [AuthGuard] },
   { path: 'edit-article', component: EditArticleComponent, canActivate: [AuthGuard] },

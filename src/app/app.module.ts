@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
 import { ArticleDetailsComponent } from './article-details/article-details.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ArticleComponent } from './article/article.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_KEY);
 
@@ -36,7 +37,8 @@ backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_
     RegisterComponent,
     ArticleDetailsComponent,
     ArticleComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
