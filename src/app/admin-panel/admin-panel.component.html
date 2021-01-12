@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div *ngIf="isLoaded" class="admin-panel">
-    <table *ngIf="articles.length !== 0">
+    <table *ngIf="articles.length">
         <thead>
             <tr>
                 <th>UserId</th>
@@ -22,7 +22,7 @@
             </tr>
         </tbody>
     </table>
-    <h2 *ngIf="articles.length === 0">There are no records</h2>
+    <h2 *ngIf="!articles.length">There are no records</h2>
 </div>
 
 <div *ngIf="!isLoaded" class="admin-panel">

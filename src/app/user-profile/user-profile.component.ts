@@ -26,9 +26,9 @@ export class UserProfileComponent implements OnInit {
   }
 
 
-  async delete(f: number) {
+  async delete(id: string) {
     try {
-      await this.media.deleteRecord('posts', f);
+      await this.media.deleteRecord('posts', id);
       this.articles = await this.media.userRecords(`${this.userId}`, 'posts');
     } catch {
       console.log("Error during deleting!");

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MediaRecord } from '../models/media-record';
 import { MediaService } from '../services/media.service';
 import { UserService } from '../services/user.service';
 
@@ -25,9 +24,9 @@ export class AdminPanelComponent implements OnInit {
   }
 
 
-  async delete(f: number) {
+  async delete(id: string) {
     try {
-      await this.media.deleteRecord('posts', f);
+      await this.media.deleteRecord('posts', id);
       this.articles = await this.media.getAllRecords('posts');
     } catch {
       console.log("Error during deleting!");

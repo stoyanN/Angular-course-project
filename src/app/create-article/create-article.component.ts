@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MediaService } from '../services/media.service';
 import { UserService } from '../services/user.service';
@@ -11,7 +12,6 @@ import { UserService } from '../services/user.service';
 export class CreateArticleComponent implements OnInit {
   imgFile: string = '';
   isInvalid: boolean = false;
-  record: any;
 
   constructor(private service: UserService, private media: MediaService, private router: Router) { }
 
@@ -22,14 +22,12 @@ export class CreateArticleComponent implements OnInit {
     this.imgFile = event.target.files[0];
   }
 
+  async createStory(form: NgForm) {
 
-
-  async createStory(f: any) {
-    if (f.valid) {
+    if (form.valid) {
       try {
         const imageData = await this.media.uploadImage(this.imgFile);
-        let { orientation, title, description } = f.value;
-
+        let { orientation, title, description } = form.value;
 
         await this.media.saveRecord({
           imageUrl: imageData,

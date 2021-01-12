@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="create-article">
-    <form #f="ngForm" (ngSubmit)="createStory(f)">
+    <form #formCreate="ngForm" (ngSubmit)="createStory(formCreate)">
         <fieldset>
             <legend>Share your story</legend>
             <div *ngIf="isInvalid" class="error-message">Please fill all required data!</div>
@@ -24,7 +24,7 @@
                 <textarea maxlength="500" required ngModel name="description" cols="30" rows="10" placeholder="Tell us your story"></textarea>
             </p>
             <p>
-                <button type="submit" [disabled]="f.invalid" class="btn-submit">Share</button>
+                <button type="submit" [disabled]="formCreate.invalid" class="btn-submit">Share</button>
             </p>
         </fieldset>
     </form>

@@ -12,7 +12,7 @@ import { MediaService } from '../services/media.service';
 export class EditArticleComponent implements OnInit {
   imgFile: string = '';
   isInvalid: boolean = false;
-  recId: any;
+  recId: string = '';
   recordTest!: SinglePost;
   editFormGroup!: FormGroup;
 
@@ -23,7 +23,7 @@ export class EditArticleComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     try {
       this.recId = this.route.snapshot.params.id;
-      this.recordTest = Object.assign(await this.media.getSingleRecord(`${this.recId}`, 'posts'));
+      this.recordTest = Object.assign(await this.media.getSingleRecord(this.recId, 'posts'));
       this.editFormGroup = this.fb.group(this.recordTest);
 
     } catch {

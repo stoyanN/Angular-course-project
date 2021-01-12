@@ -17,9 +17,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async login(f: NgForm) {
+  async login(form: NgForm) {
     try {
-      let { email, password } = f.value;
+      let { email, password } = form.value;
 
       if (email && password) {
         this.user = Object.assign(await this.service.loginUser(email, password));
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         }
       }
     } catch {
-      f.resetForm();
+      form.resetForm();
       console.log("Login failed!");
     }
   }

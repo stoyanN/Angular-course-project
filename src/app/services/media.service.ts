@@ -27,8 +27,8 @@ export class MediaService {
 
   }
 
-  deleteRecord(collection: string, recordId: number) {
-    return Backendless.Data.of(collection).remove({ objectId: `${recordId}` });
+  deleteRecord(collection: string, recordId: string) {
+    return Backendless.Data.of(collection).remove({ objectId: recordId });
   }
 
   saveRecord(data: any) {

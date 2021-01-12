@@ -10,7 +10,7 @@ import { Admin } from 'src/app/models/admin';
 })
 
 export class HeaderComponent implements OnInit {
-  userName: any;
+  userName: string | null = '';
   user!: Admin;
   isAdmin: boolean = false;
 

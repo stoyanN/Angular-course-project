@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AboutInterface } from './about-interface';
 
 @Component({
@@ -7,7 +6,7 @@ import { AboutInterface } from './about-interface';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent {
   records: AboutInterface[] = [
     {
       isVertical: true,
@@ -45,12 +44,5 @@ export class AboutComponent implements OnInit {
       description: "On this picture you can see the long road in the sea. I don't like going on this road because it looks so scary but it is nice to stand on the beach looking at it... dreaming about good food and cold beer!"
     }
   ];
-
-  constructor(private route: Router) { }
-
-  ngOnInit(): void {
-  }
-
-
 
 }

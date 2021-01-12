@@ -1,8 +1,8 @@
 <app-header></app-header>
 
 <div *ngIf="isLoaded" class="admin-panel">
-    <h2 *ngIf="articles.length === 0">There are no records</h2>
-    <table *ngIf="articles.length !== 0">
+    <h2 *ngIf="!articles.length">There are no records</h2>
+    <table *ngIf="articles.length">
         <thead>
             <tr>
                 <th>Object Id</th>

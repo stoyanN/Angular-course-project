@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="login-container">
     <div class="site-login">
-        <form #f="ngForm" (ngSubmit)="login(f)">
+        <form #formLogin="ngForm" (ngSubmit)="login(formLogin)">
             <fieldset>
                 <legend>Login</legend>
                 <p class="email">
@@ -15,7 +15,7 @@
                     <input ngModel required type="password" name="password" id="u-password">
                 </p>
                 <p class="submit">
-                    <button [disabled]="f.invalid" class="btn-submit">Log In</button>
+                    <button [disabled]="formLogin.invalid" class="btn-submit">Log In</button>
                 </p>
             </fieldset>
         </form>

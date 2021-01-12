@@ -13,9 +13,9 @@ import { UserService } from '../services/user.service';
 
 export class ArticleDetailsComponent implements OnInit, OnDestroy {
   recData!: SinglePost | any;
-  isAuthor: any;
-  userId: any;
-  recId: any;
+  isAuthor: boolean = false;
+  userId: string | null = '';
+  recId: string = '';
   isLiked: boolean = false;
   likes: Array<any> = [];
   postsEventHandler = Backendless.Data.of('posts').rt();
@@ -59,12 +59,12 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
   }
 
 
-  async deleteRec(value: any) {
+  async deleteRec(id: string) {
     try {
       let isSure = window.confirm("Do you really want to delete this record?");
 
       if (isSure) {
-        await this.media.deleteRecord('posts', value);
+        await this.media.deleteRecord('posts', id);
         this.router.navigate(['articles']);
       }
 
