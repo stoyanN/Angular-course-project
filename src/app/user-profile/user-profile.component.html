@@ -11,7 +11,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let a of articles">
+            <tr [id]="a.objectId" *ngFor="let a of articles">
                 <td>
                     {{a.objectId}}
                 </td>

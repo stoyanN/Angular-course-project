@@ -20,9 +20,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ArticleComponent } from './article/article.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MediaService } from './services/media.service';
+import { UserService } from './services/user.service';
 
 backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_KEY);
-
 
 
 @NgModule({
@@ -47,9 +48,12 @@ backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    MediaService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

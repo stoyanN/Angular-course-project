@@ -1,4 +1,7 @@
+import { NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { CreateArticleComponent } from './create-article.component';
 
@@ -8,9 +11,18 @@ describe('CreateArticleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateArticleComponent ]
+      imports: [
+        RouterTestingModule.withRoutes([
+          {
+            path: '', component: CreateArticleComponent
+          }
+        ]),
+        FormsModule
+      ],
+      providers: [],
+      declarations: [CreateArticleComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

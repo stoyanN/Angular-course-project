@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { Admin } from 'src/app/models/admin';
 
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   user!: Admin;
   isAdmin: boolean = false;
 
-  constructor(private service: UserService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private service: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.userName = localStorage.getItem('email');

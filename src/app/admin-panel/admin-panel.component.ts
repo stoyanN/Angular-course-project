@@ -1,35 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { MediaService } from '../services/media.service';
-import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-admin-panel',
   templateUrl: './admin-panel.component.html',
   styleUrls: ['./admin-panel.component.css']
 })
-export class AdminPanelComponent implements OnInit {
+export class AdminPanelComponent implements OnInit, OnDestroy {
   articles: any[] = [];
   isLoaded: boolean = false;
+  recordsSubscription!: Subscription;
 
 
-  constructor(private media: MediaService, private service: UserService) { }
+  constructor(private media: MediaService) { }
 
-  async ngOnInit(): Promise<void> {
-    try {
-      this.articles = await this.media.getAllRecords('posts');
-      this.isLoaded = true;
-    } catch {
-      console.log("Error during loading!");
-    }
+  ngOnInit() {
+    this.recordsSubscription = this.media.getAllRecords('posts')
+      .subscribe(list => {
+        this.articles = list;
+        this.isLoaded = true;
+      })
+  }
+
+  ngOnDestroy() {
+    this.recordsSubscription.unsubscribe();
   }
 
 
-  async delete(id: string) {
-    try {
-      await this.media.deleteRecord('posts', id);
-      this.articles = await this.media.getAllRecords('posts');
-    } catch {
-      console.log("Error during deleting!");
+  delete(id: string) {
+    let elem = document.getElementById(id);
+    let parentElement = elem?.parentElement;
+
+    if (elem) {
+      parentElement?.removeChild(elem);
     }
+
+    this.media.deleteRecord('posts', id).subscribe(
+
+      (() => this.recordsSubscription.add()),
+
+      ((err: Error) => {
+        if (elem) {
+          parentElement?.appendChild(elem);
+        }
+        console.log(err.message);
+      })
+
+    ).unsubscribe();
+
   }
 }
+

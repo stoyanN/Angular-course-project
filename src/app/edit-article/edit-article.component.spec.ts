@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { EditArticleComponent } from './edit-article.component';
 
@@ -8,9 +10,15 @@ describe('EditArticleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditArticleComponent ]
+      imports: [RouterTestingModule.withRoutes([
+        {
+          path: '', component: EditArticleComponent
+        }
+      ])],
+      providers: [FormBuilder],
+      declarations: [EditArticleComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

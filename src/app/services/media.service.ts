@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import Backendless from 'backendless';
+import { from } from 'rxjs/internal/observable/from';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +30,7 @@ export class MediaService {
   }
 
   deleteRecord(collection: string, recordId: string) {
-    return Backendless.Data.of(collection).remove({ objectId: recordId });
+    return from(Backendless.Data.of(collection).remove({ objectId: recordId }));
   }
 
   saveRecord(data: any) {
@@ -37,15 +39,16 @@ export class MediaService {
 
   userRecords(userId: string, collection: string) {
     const queryBuilder = Backendless.DataQueryBuilder.create().setWhereClause(`ownerId = '${userId}'`);
-
-    return Backendless.Data.of(collection).find(queryBuilder);
+    // let result = from(Backendless.Data.of(collection).find(queryBuilder));
+    return from(Backendless.Data.of(collection).find(queryBuilder));
+    // return Backendless.Data.of(collection).find(queryBuilder);
   }
 
   getAllRecords(collection: string) {
-    return Backendless.Data.of(collection).find();
+    return from(Backendless.Data.of(collection).find());
   }
 
   getSingleRecord(objectId: string, collection: string) {
-    return Backendless.Data.of(collection).findById(objectId);
+    return from(Backendless.Data.of(collection).findById(objectId));
   }
 }

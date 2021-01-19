@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { RegisterComponent } from './register.component';
 
@@ -8,9 +11,17 @@ describe('RegisterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ]
+      imports: [
+        RouterTestingModule.withRoutes([
+          {
+            path: '', component: RegisterComponent
+          }
+        ])
+      ],
+      declarations: [RegisterComponent],
+      providers: [FormBuilder]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import Backendless from 'backendless';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class UserService {
   }
 
   getUser() {
-    return Backendless.UserService.getCurrentUser()
+    return Backendless.UserService.getCurrentUser();
   }
 
   logoutUser() {

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { MediaService } from '../services/media.service';
-import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-create-article',
@@ -13,7 +12,7 @@ export class CreateArticleComponent implements OnInit {
   imgFile: string = '';
   isInvalid: boolean = false;
 
-  constructor(private service: UserService, private media: MediaService, private router: Router) { }
+  constructor(private media: MediaService, private router: Router) { }
 
   ngOnInit(): void {
   }

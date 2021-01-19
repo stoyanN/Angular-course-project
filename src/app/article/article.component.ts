@@ -1,23 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { from } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { MediaService } from '../services/media.service';
-import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.css']
 })
-export class ArticleComponent implements OnInit {
+export class ArticleComponent implements OnInit, OnDestroy {
   userRecords: any[] = [];
   isLoaded: boolean = false;
+  recordSubscription!: Subscription;
 
-  constructor(private service: UserService, private media: MediaService) { }
+  constructor(private media: MediaService) { }
 
-  async ngOnInit(): Promise<void> {
-    this.isLoaded = true;
+  ngOnInit() {
+    this.recordSubscription = this.media.getAllRecords("posts")
+      .subscribe(result => {
+        this.userRecords = result
+        this.isLoaded = true;
+      });
+  }
 
-    from(this.media.getAllRecords("posts")).subscribe(result => this.userRecords = result);
+  ngOnDestroy() {
+    this.recordSubscription.unsubscribe();
   }
 
 }

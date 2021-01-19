@@ -1,8 +1,8 @@
 <app-header></app-header>
-<div *ngIf="!recordTest" style="text-align: center;">
+<div *ngIf="!article" style="text-align: center;">
     <h1>Loading...</h1>
 </div>
-<div *ngIf="recordTest" class="create-article">
+<div *ngIf="article" class="create-article">
     <form *ngIf="editFormGroup" [formGroup]="editFormGroup" (ngSubmit)="editStory()">
         <fieldset>
             <legend>Share your story</legend>
@@ -29,6 +29,7 @@
             <div>
                 <button type="submit" class="btn-submit">Share</button>
             </div>
+            <h4 *ngIf="isEditing">Editing...Please wait</h4>
         </fieldset>
     </form>
 </div>

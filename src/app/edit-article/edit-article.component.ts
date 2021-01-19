@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { SinglePost } from '../models/single-post';
 import { MediaService } from '../services/media.service';
 
@@ -9,26 +10,36 @@ import { MediaService } from '../services/media.service';
   templateUrl: './edit-article.component.html',
   styleUrls: ['./edit-article.component.css']
 })
-export class EditArticleComponent implements OnInit {
+export class EditArticleComponent implements OnInit, OnDestroy {
   imgFile: string = '';
   isInvalid: boolean = false;
   recId: string = '';
-  recordTest!: SinglePost;
+  article!: SinglePost;
   editFormGroup!: FormGroup;
+  articleSubscription!: Subscription;
+  isEditing: Boolean = false;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private media: MediaService, private router: Router) {
   }
 
 
-  async ngOnInit(): Promise<void> {
-    try {
-      this.recId = this.route.snapshot.params.id;
-      this.recordTest = Object.assign(await this.media.getSingleRecord(this.recId, 'posts'));
-      this.editFormGroup = this.fb.group(this.recordTest);
+  ngOnInit() {
+    this.recId = this.route.snapshot.params.id;
+    this.articleSubscription = this.media.getSingleRecord(this.recId, 'posts')
+      .subscribe(
+        (record: object) => {
+          this.article = Object.assign(record);
+          this.editFormGroup = this.fb.group(this.article);
+        },
+        (err: Error) => {
+          alert('Something went wrong while getting record');
 
-    } catch {
-      console.log("Problem getting record!");
-    }
+          console.log(err.message);
+        })
+  }
+
+  ngOnDestroy() {
+    this.articleSubscription.unsubscribe();
   }
 
   registerPhoto(event: any) {
@@ -48,7 +59,7 @@ export class EditArticleComponent implements OnInit {
   async editStory() {
     try {
       let shallowCopy = Object.assign({}, this.editFormGroup.value);
-
+      this.isEditing = true;
 
       if (this.imgFile) {
         const imageData = await this.media.uploadImage(this.imgFile);
@@ -57,7 +68,7 @@ export class EditArticleComponent implements OnInit {
       }
 
       await this.media.saveRecord(shallowCopy);
-
+      this.isEditing = false;
       this.router.navigate(['articles', this.recId]);
     } catch {
       console.log("Record updating error!");
