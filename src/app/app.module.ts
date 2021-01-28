@@ -22,6 +22,8 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MediaService } from './services/media.service';
 import { UserService } from './services/user.service';
+import { StoreModule } from '@ngrx/store';
+import { loginUser } from './user-profile/user-state.reducer';
 
 backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_KEY);
 
@@ -41,7 +43,7 @@ backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_
     ArticleComponent,
     NotFoundComponent,
     AdminPanelComponent,
-    UserProfileComponent
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ backendless.initApp(environment.backendless.APP_ID, environment.backendless.API_
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({ logging: loginUser })
   ],
   providers: [
     MediaService,

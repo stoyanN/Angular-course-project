@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { Admin } from 'src/app/models/admin';
+import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { logOutUser } from 'src/app/user-profile/user-state.actions';
+
 
 @Component({
   selector: 'app-header',
@@ -9,23 +13,33 @@ import { Admin } from 'src/app/models/admin';
   styleUrls: ['./header.component.css']
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   userName: string | null = '';
   user!: Admin;
   isAdmin: boolean = false;
 
-  constructor(private service: UserService, private router: Router) { }
+  userSubscription!: Subscription;
 
-  ngOnInit(): void {
-    this.userName = localStorage.getItem('email');
-    this.userCheck();
+  isUserLogged$!: Observable<boolean>;
+
+  constructor(private service: UserService, private router: Router, private store: Store<{ logging: boolean }>) {
+    this.isUserLogged$ = this.store.select('logging');
   }
 
+  ngOnInit(): void {
+    this.userSubscription = this.isUserLogged$.subscribe(() => this.userName = localStorage.getItem('email'));
+    // this.userCheck();
+  }
+
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe();
+  }
 
   async logout() {
     try {
-      await this.service.logoutUser();
       this.router.navigate(['home']);
+      await this.service.logoutUser();
+      // this.store.dispatch(logOutUser());
     } catch {
       console.log("Logout error!");
     }

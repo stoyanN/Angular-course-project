@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
@@ -11,18 +11,17 @@ import { UserService } from '../services/user.service';
 export class RegisterComponent implements OnInit {
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private service: UserService) {
+  constructor(private router: Router, private service: UserService) {
     this.form = this.createFormGroup();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   createFormGroup() {
     return new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      rePassword: new FormControl('', [Validators.required])
+      rePassword: new FormControl('', [Validators.required, Validators.minLength(3)])
     });
   }
 
@@ -42,7 +41,7 @@ export class RegisterComponent implements OnInit {
     try {
 
       if (this.form.valid) {
-        let { email, password, rePassword } = this.form.value;
+        let { email, password } = this.form.value;
 
         await this.service.registerUser(email, password);
         await this.service.loginUser(email, password);

@@ -1,4 +1,5 @@
 import { ComponentFixture, fakeAsync, flush, flushMicrotasks, TestBed, tick } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
 import { MediaService } from '../services/media.service';
 
@@ -6,7 +7,7 @@ import { UserProfileComponent } from './user-profile.component';
 
 class MediaServiceStub {
   userRecords(userId: string, collection: string): Observable<object[]> {
-    return userId === '1' ? of([{ objectId: 1, title: 'Hello' }]) : of([]);
+    return userId === '1' ? of([{ objectId: 1, title: 'Test Title' }]) : of([]);
   }
 
   deleteRecord(collection: string, recordId: string): Observable<object> {
@@ -52,21 +53,22 @@ describe('UserProfileComponent', () => {
   }))
 
   it('should have new userId', fakeAsync(() => {
+    component.ngOnInit();
     localStorage.setItem('userId', '1');
-    
-    // fixture.detectChanges();
-    // tick(1000);
+
+    fixture.detectChanges();
+    tick(1000);
 
     expect(component.userId).toBe('1');
   }))
 
   it('should have article', fakeAsync(() => {
-    
+    component.ngOnInit();
     localStorage.setItem('userId', '1');
-    
+
     fixture.detectChanges();
 
-    tick();
+    tick(1000);
 
     expect(component.articles.length).toEqual(1);
   }));
@@ -83,14 +85,17 @@ describe('UserProfileComponent', () => {
   }));
 
   it('delete() should NOT remove element when invalid id provided', fakeAsync(() => {
-    let elem = fixture.debugElement.nativeElement.querySelector('tbody');
-    component.delete('2');
+    component.ngOnInit();
 
+    let elem = fixture.debugElement.query(By.css('tbody')).nativeElement;
+
+    component.delete('2');
+    
     fixture.detectChanges();
 
-    tick(100);
+    tick(1000);
 
-    expect(elem.textContent).toContain('Hello');
+    expect(elem.textContent).toContain('Test Title');
   }));
 
 

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { throwError } from 'rxjs';
 import { Admin } from '../models/admin';
 import { UserService } from '../services/user.service';
 
@@ -10,12 +9,11 @@ import { UserService } from '../services/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+
+export class LoginComponent {
   user!: Admin;
   constructor(private service: UserService, private router: Router) { }
 
-  ngOnInit(): void {
-  }
 
   async login(form: NgForm) {
     try {
@@ -25,7 +23,7 @@ export class LoginComponent implements OnInit {
         this.user = Object.assign(await this.service.loginUser(email, password));
 
         if (this.user.role === 'admin') {
-        this.router.navigate(['admin']);
+          this.router.navigate(['admin']);
         } else {
           this.router.navigate(['about']);
         }

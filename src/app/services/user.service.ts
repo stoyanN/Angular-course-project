@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import Backendless from 'backendless';
-
+import { logInUser, logOutUser } from '../user-profile/user-state.actions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
+  constructor(private store: Store<{ logging: boolean }>) { } 
 
   updateUserData(data: any) {
     return Backendless.Data.of("Users").save(data);
@@ -19,6 +20,7 @@ export class UserService {
 
   logoutUser() {
     localStorage.clear();
+    this.store.dispatch(logOutUser());
     return Backendless.UserService.logout();
   }
 
@@ -27,6 +29,8 @@ export class UserService {
       .then(x => {
         localStorage.setItem('userId', `${x.objectId}`);
         localStorage.setItem('email', `${x.email}`);
+        this.store.dispatch(logInUser());
+
         return x;
       })
       .catch((err: Error) => {

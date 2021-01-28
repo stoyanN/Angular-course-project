@@ -19,8 +19,9 @@ export class EditArticleComponent implements OnInit, OnDestroy {
   articleSubscription!: Subscription;
   isEditing: Boolean = false;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private media: MediaService, private router: Router) {
-  }
+  constructor(
+    private fb: FormBuilder, private route: ActivatedRoute, private media: MediaService, private router: Router
+  ) { }
 
 
   ngOnInit() {

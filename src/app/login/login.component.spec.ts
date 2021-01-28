@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-
+import { StoreModule, Store } from '@ngrx/store';
 import { LoginComponent } from './login.component';
+// import { MockStore } from '@ngrx/store/testing/mock_store'
+import { loginUser } from '../user-profile/user-state.reducer';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -16,7 +18,8 @@ describe('LoginComponent', () => {
             path: '', component: LoginComponent
           }
         ]),
-        FormsModule
+        FormsModule,
+        StoreModule.forRoot({ logging: loginUser })
       ],
       declarations: [LoginComponent]
     })
